@@ -1,0 +1,688 @@
+.app-shell {
+  min-height: 100vh;
+  padding: 2.5rem clamp(1.5rem, 4vw, 4rem) 3rem;
+  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 55%) #040404;
+  color: #f7f7f2;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 1.25rem;
+}
+
+.brand-cluster {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffffff 0%, #0f0f0f 100%);
+  color: #040404;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.brand-title {
+  margin: 0;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.brand-subtitle {
+  margin: 0.25rem 0 0;
+  color: rgba(247, 247, 242, 0.65);
+  font-size: 0.9rem;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ghost-link,
+.primary-action {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: transparent;
+  color: inherit;
+  padding: 0.65rem 1.25rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.ghost-link:hover,
+.primary-action:hover {
+  border-color: rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.primary-action {
+  background: #ffffff;
+  color: #050505;
+  border-color: transparent;
+}
+
+.primary-action:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.story-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.8rem;
+  color: rgba(247, 247, 242, 0.65);
+}
+
+.hero-title {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 600;
+}
+
+.hero-copy {
+  margin: 0;
+  color: rgba(247, 247, 242, 0.75);
+  max-width: 42ch;
+}
+
+.mint-chip {
+  display: inline-flex;
+  margin: 0.4rem 0 0.2rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: rgba(247, 247, 242, 0.7);
+  font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+}
+
+
+
+.wallet-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(21, 21, 21, 0.8));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.wallet-label {
+  margin: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.wallet-status {
+  margin: 0.25rem 0 0;
+  font-size: 0.95rem;
+}
+
+.wallet-address {
+  margin: 0.35rem 0 0;
+  font-family: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.95rem;
+  word-break: break-all;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.wallet-instruction {
+  margin-top: 0.75rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 12px;
+  border: 1px dashed rgba(255, 255, 255, 0.16);
+  color: rgba(247, 247, 242, 0.75);
+  font-size: 0.85rem;
+}
+
+.swap-cta {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.swap-copy {
+  margin: 0;
+  color: rgba(247, 247, 242, 0.7);
+  font-size: 0.9rem;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.step-label {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: rgba(247, 247, 242, 0.6);
+}
+
+.step-copy {
+  margin: 0.25rem 0 0;
+  color: rgba(247, 247, 242, 0.8);
+}
+
+.widget-panel {
+  background: rgba(6, 6, 6, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.widget-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.widget-eyebrow {
+  margin: 0;
+  letter-spacing: 0.3em;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: rgba(247, 247, 242, 0.62);
+}
+
+.widget-title {
+  margin: 0.2rem 0 0;
+  font-size: 1.45rem;
+  font-weight: 600;
+}
+
+.widget-placeholder {
+  min-height: 420px;
+  border-radius: 18px;
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1.5rem;
+  color: rgba(247, 247, 242, 0.55);
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.35rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-button {
+  border: none;
+  background: transparent;
+  color: rgba(247, 247, 242, 0.7);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  padding: 0.45rem 1.25rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav-button.is-active {
+  background: #f7f7f2;
+  color: #050505;
+}
+
+.swap-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.swap-hero {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.swap-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.swap-wallet {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  color: rgba(247, 247, 242, 0.9);
+}
+
+.swap-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.swap-stats > div {
+  padding: 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.swap-stats span {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  color: rgba(247, 247, 242, 0.6);
+}
+
+.swap-stats strong {
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.95rem;
+}
+
+.swap-grid {
+  width: min(420px, 100%);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.swap-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 1.5rem;
+  background: rgba(6, 6, 6, 0.85);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.response-card {
+  margin-top: -0.5rem;
+}
+
+.swap-ticket {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.swap-token-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.swap-token-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  color: rgba(247, 247, 242, 0.62);
+}
+
+.swap-token-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.swap-token-row.is-static {
+  justify-content: space-between;
+}
+
+.swap-token-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  color: #f7f7f2;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.swap-token-input:focus {
+  outline: none;
+}
+
+.swap-token-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.swap-token-pill.look-pill {
+  border-color: rgba(255, 153, 0, 0.45);
+  background: rgba(255, 153, 0, 0.15);
+}
+
+.swap-token-name {
+  font-weight: 600;
+}
+
+.swap-token-mint {
+  margin: 0;
+  font-size: 0.72rem;
+  color: rgba(247, 247, 242, 0.55);
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  word-break: break-all;
+}
+
+.swap-arrow {
+  font-size: 1.35rem;
+  text-align: center;
+  color: rgba(247, 247, 242, 0.5);
+}
+
+.swap-token-amount {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.swap-ticket-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.swap-status-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.swap-primary-button {
+  border: none;
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  background: #f7f7f2;
+  color: #050505;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.swap-primary-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.panel-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.panel-eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.72rem;
+  color: rgba(247, 247, 242, 0.55);
+}
+
+.panel-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.panel-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.panel-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(247, 247, 242, 0.65);
+}
+
+.panel-field input,
+.panel-field textarea {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  background: rgba(10, 10, 10, 0.8);
+  color: #f7f7f2;
+  padding: 0.75rem 0.9rem;
+  font-size: 0.95rem;
+  font-family: "IBM Plex Sans", "Inter", sans-serif;
+}
+
+.panel-button {
+  border: none;
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  background: #f7f7f2;
+  color: #050505;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.panel-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.status-pill {
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(247, 247, 242, 0.8);
+  width: fit-content;
+}
+
+.status-pill.status-loading {
+  border-color: rgba(255, 193, 59, 0.45);
+}
+
+.status-pill.status-error {
+  border-color: rgba(255, 71, 87, 0.65);
+  color: #ff858c;
+}
+
+.status-pill.status-success {
+  border-color: rgba(46, 204, 113, 0.55);
+  color: #7ff0b5;
+}
+
+.request-chip {
+  border-radius: 12px;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 0.75rem;
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.85rem;
+  color: rgba(247, 247, 242, 0.8);
+}
+
+.response-block {
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.45);
+  padding: 0.75rem;
+  max-height: 220px;
+  overflow: auto;
+}
+
+.response-block pre {
+  margin: 0;
+  font-size: 0.8rem;
+  color: rgba(247, 247, 242, 0.85);
+}
+
+.execution-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+
+.execution-summary > div {
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+@media (max-width: 768px) {
+  .app-shell {
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  .app-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .nav-tabs {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .nav-button {
+    flex: 1;
+    text-align: center;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wallet-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .swap-card {
+    padding: 1.25rem;
+  }
+
+  .swap-ticket {
+    padding: 0.85rem 1rem;
+  }
+
+  .swap-token-row {
+    padding: 0.75rem 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-mark {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .brand-title {
+    font-size: 0.9rem;
+  }
+
+  .swap-primary-button,
+  .ghost-link,
+  .primary-action {
+    width: 100%;
+    text-align: center;
+  }
+
+  .panel-field input {
+    font-size: 0.9rem;
+  }
+}
