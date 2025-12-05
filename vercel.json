@@ -1,0 +1,17 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/jupiter/order",
+      "destination": "/api/jupiter-order"
+    },
+    {
+      "source": "/api/jupiter/execute",
+      "destination": "/api/jupiter-execute"
+    },
+    {
+      "source": "/api/sign-moonpay",
+      "destination": "/api/sign-moonpay"
+    }
+  ]
+}
+
