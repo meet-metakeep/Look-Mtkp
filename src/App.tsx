@@ -1,5 +1,5 @@
 /// @notice Imports React helpers to orchestrate state, effects, memoization, and callbacks.
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 /// @notice Imports the MoonPay buy widget binding (swap temporarily disabled).
 import {
   MoonPayBuyWidget /* , MoonPaySwapWidget */,
@@ -146,8 +146,12 @@ function App() {
   );
   /// @notice Tracks the async status for the execute endpoint.
   const [executeStatus, setExecuteStatus] = useState<AsyncStatus>("idle");
+  /// @notice Tracks whether the layout is currently in a mobile viewport.
+  const [isMobile, setIsMobile] = useState(false);
   /// @notice Reads the MetaKeep App ID from the environment for secure initialization.
   const metaKeepAppId = import.meta.env.VITE_METAKEEP_APP_ID;
+  /// @notice Captures the horizontal origin for mobile swipe gestures.
+  const touchStartXRef = useRef<number | null>(null);
 
   /// @notice Ensures the MetaKeep App ID exists before any SDK calls execute.
   if (!metaKeepAppId) {
@@ -372,6 +376,21 @@ function App() {
     }
   }, [walletState.address]);
 
+  /// @notice Updates the mobile flag in response to viewport changes.
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) {
+      return;
+    }
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    const handleChange = (event: MediaQueryListEvent) => {
+      setIsMobile(event.matches);
+    };
+
+    setIsMobile(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
   const estimatedOutputAmount = useMemo(
     () =>
       deriveTokenAmount(
@@ -421,6 +440,49 @@ function App() {
 
   /// @notice Indicates whether the MoonPay widget should be rendered.
   const showWidget = Boolean(walletState.address);
+  /// @notice Derives the button label shared by desktop and mobile wallet CTAs.
+  const walletButtonLabel = walletState.address
+    ? "Re-sync Wallet"
+    : walletState.status === "loading"
+    ? "Provisioning..."
+    : "Secure Wallet";
+  const walletButtonDisabled = walletState.status === "loading";
+
+  /// @notice Records the initial horizontal coordinate for mobile swipe gestures.
+  const handleTouchStart = useCallback(
+    (event: React.TouchEvent) => {
+      if (!isMobile) {
+        return;
+      }
+      const touch = event.changedTouches[0];
+      touchStartXRef.current = touch?.clientX ?? null;
+    },
+    [isMobile]
+  );
+
+  /// @notice Evaluates the swipe delta to toggle between surfaces.
+  const handleTouchEnd = useCallback(
+    (event: React.TouchEvent) => {
+      if (!isMobile || touchStartXRef.current === null) {
+        return;
+      }
+      const touch = event.changedTouches[0];
+      if (!touch) {
+        touchStartXRef.current = null;
+        return;
+      }
+
+      const deltaX = touchStartXRef.current - touch.clientX;
+      const threshold = 60;
+      if (deltaX > threshold && activeSurface !== "swap") {
+        setActiveSurface("swap");
+      } else if (deltaX < -threshold && activeSurface !== "onramp") {
+        setActiveSurface("onramp");
+      }
+      touchStartXRef.current = null;
+    },
+    [activeSurface, isMobile]
+  );
 
   /// @notice Presents either the onramp experience or the Jupiter swap desk.
   return (
@@ -457,19 +519,19 @@ function App() {
           <button
             className="ghost-link nav-wallet-button"
             onClick={handleWalletRequest}
-            disabled={walletState.status === "loading"}
+            disabled={walletButtonDisabled}
           >
-            {walletState.address
-              ? "Re-sync Wallet"
-              : walletState.status === "loading"
-              ? "Provisioning..."
-              : "Secure Wallet"}
+            {walletButtonLabel}
           </button>
         </div>
       </header>
 
       {activeSurface === "onramp" ? (
-        <main className="content-grid content-centered">
+        <main
+          className="content-grid content-centered"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           <section className="widget-panel moonpay-panel">
             <div className="widget-header">
               <div>
@@ -497,7 +559,11 @@ function App() {
           </section>
         </main>
       ) : (
-        <main className="swap-main">
+        <main
+          className="swap-main"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           <section className="swap-grid">
             <div className="swap-card">
               <div className="panel-card-header">
@@ -586,6 +652,15 @@ function App() {
           </section>
         </main>
       )}
+      <div className="mobile-wallet-cta">
+        <button
+          className="mobile-wallet-button"
+          onClick={handleWalletRequest}
+          disabled={walletButtonDisabled}
+        >
+          {walletButtonLabel}
+        </button>
+      </div>
     </div>
   );
 }
