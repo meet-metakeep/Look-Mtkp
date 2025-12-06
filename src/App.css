@@ -91,6 +91,15 @@
   gap: 2rem;
 }
 
+.content-centered {
+  justify-content: center;
+}
+
+.moonpay-panel {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
 .story-card {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.08);

@@ -469,51 +469,13 @@ function App() {
       </header>
 
       {activeSurface === "onramp" ? (
-        <main className="content-grid">
-          <section className="story-card">
-            <p className="eyebrow">Moonpay On-Ramp</p>
-            <h1 className="hero-title">
-              Acquire Crypto on Solana, settle to MetaKeep
-            </h1>
-            <p className="mint-chip">LOOK mint target · {LOOK_TOKEN_MINT}</p>
-
-            <div className="wallet-card">
-              <div>
-                <p className="wallet-label">MetaKeep Wallet</p>
-                <p className="wallet-status">
-                  {walletState.message ?? "Awaiting secure session"}
-                </p>
-                {walletState.address && (
-                  <p className="wallet-address">{walletState.address}</p>
-                )}
-              </div>
-              <button
-                className="primary-action"
-                onClick={handleWalletRequest}
-                disabled={walletState.status === "loading"}
-              >
-                {walletState.status === "loading"
-                  ? "Provisioning Wallet..."
-                  : "Secure Wallet"}
-              </button>
-            </div>
-            {walletState.address && (
-              <div className="wallet-instruction">
-                Paste the MetaKeep wallet address inside MoonPay once you select
-                the desired asset.
-              </div>
-            )}
-          </section>
-
-          <section className="widget-panel">
+        <main className="content-grid content-centered">
+          <section className="widget-panel moonpay-panel">
             <div className="widget-header">
               <div>
                 <p className="widget-eyebrow">MoonPay Checkout</p>
                 <p className="widget-title">Buy $LOOK · Solana Network</p>
               </div>
-              <button className="ghost-link" onClick={handleWalletRequest}>
-                Refresh Wallet
-              </button>
             </div>
             {!showWidget ? (
               <div className="widget-placeholder">
