@@ -96,8 +96,16 @@
 }
 
 .moonpay-panel {
-  max-width: 520px;
+  width: min(520px, 100%);
   margin: 0 auto;
+}
+
+.moonpay-panel iframe {
+  width: 100% !important;
+  min-width: 0 !important;
+  border: none;
+  border-radius: 18px;
+  overflow: hidden;
 }
 
 .story-card {
