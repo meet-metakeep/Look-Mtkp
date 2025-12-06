@@ -477,22 +477,23 @@ function App() {
                 <p className="widget-title">Buy $LOOK · Solana Network</p>
               </div>
             </div>
-            <div className="moonpay-resizable">
-              <div className="moonpay-scale-wrapper">
-                {!showWidget ? (
-                  <div className="widget-placeholder">
-                    <p>Secure a MetaKeep wallet to buy $LOOK</p>
-                  </div>
-                ) : (
-                  <div className="moonpay-scale-target">
-                    <MoonPayBuyWidget
-                      {...moonPayParams}
-                      onUrlSignatureRequested={signMoonPayUrl}
-                    />
-                  </div>
-                )}
+            {!showWidget ? (
+              <div className="widget-placeholder">
+                <p>
+                  Secure a MetaKeep wallet to unlock the embedded MoonPay
+                  experience.
+                </p>
               </div>
-            </div>
+            ) : (
+              <div className="moonpay-embed-shell">
+                <div className="moonpay-embed-scale">
+                  <MoonPayBuyWidget
+                    {...moonPayParams}
+                    onUrlSignatureRequested={signMoonPayUrl}
+                  />
+                </div>
+              </div>
+            )}
           </section>
         </main>
       ) : (
